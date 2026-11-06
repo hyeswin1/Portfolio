@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyeswin Singisetty | Portfolio & Engineering Hub</title>
+  <meta name="description" content="Portfolio of Hyeswin Singisetty - B.Tech Electrical Engineering at IIT Bhilai. Exploring Machine Learning, Data Analytics, Web3 dApps & Embedded Systems.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              900: '#0c4a6e',
+            },
+            darkBg: '#090d16',
+            cardBg: '#0f172a',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-darkBg text-slate-100 antialiased selection:bg-sky-500/30 selection:text-sky-200 bg-grid-pattern relative min-h-screen">
+
+  <!-- Ambient Glow Background Element -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] bg-radial-glow pointer-events-none -z-10"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-md pointer-events-none"></div>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress-bar" class="fixed top-0 left-0 h-[2.5px] w-0 bg-gradient-to-r from-sky-400 via-indigo-500 to-emerald-400 z-50 transition-all duration-75 pointer-events-none shadow-[0_0_10px_rgba(56,189,248,0.7)]"></div>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-800/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo / Identity -->
+      <a href="#hero" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center font-mono font-bold text-white text-base shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+          HS
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold tracking-tight text-white group-hover:text-sky-400 transition-colors">Hyeswin Singisetty</span>
+          <span class="text-[10px] text-slate-400 font-mono">IIT Bhilai &bull; EE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#hero" class="nav-link hover:text-sky-400 transition-colors">Home</a>
+        <a href="#projects" class="nav-link hover:text-sky-400 transition-colors">Projects &amp; dApps</a>
+        <a href="#experience" class="nav-link hover:text-sky-400 transition-colors">Experience &amp; Leadership</a>
+        <a href="#about" class="nav-link hover:text-sky-400 transition-colors">About</a>
+        <a href="#contact" class="nav-link hover:text-sky-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Button & Quick Links -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="https://github.com/hyeswin1" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white transition-all border border-slate-700/60" title="GitHub Profile">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/hyeswin-singisetty-445369370/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white transition-all border border-slate-700/60" title="LinkedIn Profile">
+          <i data-lucide="linkedin" class="w-4 h-4"></i>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs tracking-wide shadow-md shadow-sky-500/20 transition-all hover:shadow-sky-500/40">
+          <span>Get In Touch</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95 px-4 pt-3 pb-4 space-y-2">
+      <a href="#hero" class="block py-2 text-sm text-slate-300 hover:text-sky-400">Home</a>
+      <a href="#projects" class="block py-2 text-sm text-slate-300 hover:text-sky-400">Projects &amp; dApps</a>
+      <a href="#experience" class="block py-2 text-sm text-slate-300 hover:text-sky-400">Experience &amp; Leadership</a>
+      <a href="#about" class="block py-2 text-sm text-slate-300 hover:text-sky-400">About Me</a>
+      <a href="#contact" class="block py-2 text-sm text-sky-400 font-semibold">Contact</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-12">
+
+    <!-- ========================================== -->
+    <!-- 1. HERO / LANDING SECTION -->
+    <!-- ========================================== -->
+    <section id="hero" class="pt-6 sm:pt-12 pb-8 flex flex-col items-center text-center relative">
+      
+      <!-- Top Status Pill -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-950/60 border border-sky-500/30 text-sky-300 text-xs font-mono mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Active Undergrad @ IIT Bhilai &bull; Electrical Engineering</span>
+      </div>
+
+      <!-- Primary Hook Title -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl leading-tight">
+        Hi, I'm <span class="text-gradient">Hyeswin Singisetty</span>
+      </h1>
+
+      <!-- Current Role & Punchy Tagline -->
+      <p class="mt-4 text-lg sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+        B.Tech Electrical Engineering undergrad at <span class="text-white font-medium">IIT Bhilai</span>.
+      </p>
+      
+      <div class="mt-2 text-xl sm:text-2xl font-semibold text-gradient-emerald">
+        Exploring Machine Learning and Data analytics.
+      </div>
+
+      <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl">
+        Bridging the physical and algorithmic worlds: building production-ready Web3 dApps with Google Antigravity, designing embedded hardware systems, and developing friction-driven fintech solutions.
+      </p>
+
+      <!-- Quick Stats & Badges Grid -->
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-4xl text-left">
+        
+        <div class="reveal-on-scroll delay-100 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-sky-500/30 transition-all flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-sky-500/10 text-sky-400 shrink-0">
+            <i data-lucide="briefcase" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">E-Cell Team</div>
+            <div class="text-xs sm:text-sm font-semibold text-white">Management Member</div>
+          </div>
+        </div>
+
+        <div class="reveal-on-scroll delay-150 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-indigo-500/30 transition-all flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 shrink-0">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Electromos</div>
+            <div class="text-xs sm:text-sm font-semibold text-white">Electronics Club</div>
+          </div>
+        </div>
+
+        <div class="reveal-on-scroll delay-200 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-emerald-500/30 transition-all flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0">
+            <i data-lucide="blocks" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Blockchain Club</div>
+            <div class="text-xs sm:text-sm font-semibold text-white">BlockchainIITBH</div>
+          </div>
+        </div>
+
+        <div class="reveal-on-scroll delay-250 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-amber-500/30 transition-all flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 shrink-0">
+            <i data-lucide="trophy" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Recent Contest</div>
+            <div class="text-xs sm:text-sm font-semibold text-white">VibeChain Hackathon</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Call To Action Buttons -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a href="#projects" class="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+          <span>View Projects &amp; dApps</span>
+          <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+        <a href="#experience" class="px-6 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-white font-semibold text-sm border border-slate-700 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+          <span>Experience &amp; Involvements</span>
+          <i data-lucide="award" class="w-4 h-4"></i>
+        </a>
+        <a href="#contact" class="px-6 py-3 rounded-xl bg-indigo-950/70 hover:bg-indigo-900/80 text-indigo-300 font-semibold text-sm border border-indigo-500/30 transition-all flex items-center gap-2">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>Get In Touch</span>
+        </a>
+      </div>
+
+      <!-- Quick Socials Bar -->
+      <div class="mt-6 flex items-center gap-4 text-xs text-slate-400">
+        <span>Connect:</span>
+        <a href="https://github.com/hyeswin1" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+          <i data-lucide="github" class="w-3.5 h-3.5"></i> hyeswin1
+        </a>
+        <span>&bull;</span>
+        <a href="https://www.linkedin.com/in/hyeswin-singisetty-445369370/" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> LinkedIn
+        </a>
+        <span>&bull;</span>
+        <button class="copy-btn hover:text-sky-400 transition-colors flex items-center gap-1 cursor-pointer" data-copy="hyeswinsingisetty2612@gmail.com">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Mail
+        </button>
+      </div>
+
+      <!-- Subtle Scroll Down Indicator Hook -->
+      <div class="mt-10 flex flex-col items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity">
+        <a href="#projects" class="flex flex-col items-center gap-1.5 text-[11px] font-mono text-slate-400 hover:text-sky-300 transition-colors">
+          <span>Scroll to explore</span>
+          <div class="w-5 h-8 rounded-full border border-slate-700/80 flex items-start justify-center p-1 bg-slate-900/40">
+            <div class="w-1 h-2 rounded-full bg-sky-400 animate-scroll-pill"></div>
+          </div>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. PROJECTS & DAPPS SHOWCASE -->
+    <!-- ========================================== -->
+    <section id="projects" class="space-y-8 scroll-mt-20">
+      
+      <!-- Section Header -->
+      <div class="reveal-on-scroll flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/80 pb-5">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-sky-400 font-semibold mb-1">Portfolio &amp; Technical Stack</div>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight">Projects &amp; Production-Ready dApps</h2>
+          <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+            Spanning Web3 smart contract security, decentralized governance, embedded hardware prototyping, and developer productivity tools developed using Google Antigravity.
+          </p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap gap-2">
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-sky-500/20 text-sky-400 border border-sky-500/40 transition-all cursor-pointer" data-filter="all">
+            All (5)
+          </button>
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-800/60 text-slate-400 border border-slate-700/60 hover:text-slate-200 transition-all cursor-pointer" data-filter="web3">
+            Web3 &amp; Smart Contracts (3)
+          </button>
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-800/60 text-slate-400 border border-slate-700/60 hover:text-slate-200 transition-all cursor-pointer" data-filter="hardware">
+            Hardware &amp; IoT (1)
+          </button>
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-800/60 text-slate-400 border border-slate-700/60 hover:text-slate-200 transition-all cursor-pointer" data-filter="web">
+            Web Apps (1)
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- CARD 1: ClubTreasury DAO -->
+        <div class="reveal-on-scroll delay-100 project-card glass-card rounded-2xl p-6 flex flex-col justify-between" data-category="web3">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-950/70 border border-purple-500/40 text-purple-300 text-[11px] font-mono font-medium">
+                <i data-lucide="shield-check" class="w-3 h-3"></i> Web3 DAO &amp; Treasury
+              </span>
+              <button class="bookmark-btn text-slate-500 hover:text-amber-400 transition-colors cursor-pointer" data-project="club-treasury" title="Bookmark in localStorage">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-sky-300">ClubTreasury</h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+              Decentralized autonomous treasury management protocol designed for student clubs and campus organizations. Implements transparent multi-stakeholder fund proposals and voting.
+            </p>
+
+            <!-- Tech Stack Pills -->
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">DAO Treasury</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Smart Contracts</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">GitHub Pages</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-950 text-sky-300 border border-sky-800">Antigravity AI</span>
+            </div>
+
+            <!-- Security & Vulnerability Mitigations -->
+            <div class="mt-4 p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+              <div class="font-semibold text-slate-200 flex items-center gap-1">
+                <i data-lucide="lock" class="w-3 h-3 text-emerald-400"></i> Security Considerations:
+              </div>
+              <ul class="list-disc list-inside space-y-0.5 text-slate-400">
+                <li>Checks-Effects-Interactions pattern preventing reentrancy attacks.</li>
+                <li>Role-Based Access Control (RBAC) with multi-sig execution threshold.</li>
+                <li>Treasury solvency invariants and multi-stakeholder governance logic.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Links Footer -->
+          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+            <a href="https://hyeswin1.github.io/ClubTreasury/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live dApp
+            </a>
+            <a href="https://github.com/hyeswin1/ClubTreasury" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Repo
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: EduFund -->
+        <div class="reveal-on-scroll delay-150 project-card glass-card rounded-2xl p-6 flex flex-col justify-between" data-category="web3">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 text-[11px] font-mono font-medium">
+                <i data-lucide="graduation-cap" class="w-3 h-3"></i> Web3 Crowdfunding Escrow
+              </span>
+              <button class="bookmark-btn text-slate-500 hover:text-amber-400 transition-colors cursor-pointer" data-project="edufund" title="Bookmark in localStorage">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-emerald-300">EduFund</h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+              Transparent, milestone-gated peer-to-peer educational grant and sponsorship platform. Contributors fund student tuition or project grants held safely in escrow.
+            </p>
+
+            <!-- Tech Stack Pills -->
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Escrow Logic</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Milestone Funding</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">GitHub Pages</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">Smart Contracts</span>
+            </div>
+
+            <!-- Security & Mitigations -->
+            <div class="mt-4 p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+              <div class="font-semibold text-slate-200 flex items-center gap-1">
+                <i data-lucide="shield" class="w-3 h-3 text-sky-400"></i> Security Considerations:
+              </div>
+              <ul class="list-disc list-inside space-y-0.5 text-slate-400">
+                <li>Milestone releases governed by proof submissions and backer consensus.</li>
+                <li>Automated refund mechanisms if funding milestones expire unfulfilled.</li>
+                <li>Zero administrative privilege escalation or unilateral fund drain.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Links Footer -->
+          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+            <a href="https://hyeswin1.github.io/EduFund/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live dApp
+            </a>
+            <a href="https://github.com/hyeswin1/EduFund" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Repo
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: AuditLog -->
+        <div class="reveal-on-scroll delay-200 project-card glass-card rounded-2xl p-6 flex flex-col justify-between" data-category="web3">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-sky-950/70 border border-sky-500/40 text-sky-300 text-[11px] font-mono font-medium">
+                <i data-lucide="file-check" class="w-3 h-3"></i> Immutable Audit Ledger
+              </span>
+              <button class="bookmark-btn text-slate-500 hover:text-amber-400 transition-colors cursor-pointer" data-project="auditlog" title="Bookmark in localStorage">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-sky-300">AuditLog</h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+              Cryptographically verifiable on-chain logging protocol for mission-critical system state transitions, smart contract interactions, and operational governance events.
+            </p>
+
+            <!-- Tech Stack Pills -->
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Cryptographic Trail</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Audit Protocol</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">GitHub Pages</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">EVM Events</span>
+            </div>
+
+            <!-- Security & Mitigations -->
+            <div class="mt-4 p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+              <div class="font-semibold text-slate-200 flex items-center gap-1">
+                <i data-lucide="database" class="w-3 h-3 text-indigo-400"></i> Security Considerations:
+              </div>
+              <ul class="list-disc list-inside space-y-0.5 text-slate-400">
+                <li>Append-only architecture guaranteeing tamper-proof log history.</li>
+                <li>Indexed event signatures for gas-efficient off-chain querying.</li>
+                <li>Strict write authentication ensuring sender non-repudiation.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Links Footer -->
+          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+            <a href="https://hyeswin1.github.io/AuditLog/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live dApp
+            </a>
+            <a href="https://github.com/hyeswin1/AuditLog" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Repo
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 4: Dual-Axis Solar Tracking System (Electromos) -->
+        <div class="reveal-on-scroll delay-250 project-card glass-card rounded-2xl p-6 flex flex-col justify-between" data-category="hardware">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-950/70 border border-amber-500/40 text-amber-300 text-[11px] font-mono font-medium">
+                <i data-lucide="sun" class="w-3 h-3"></i> Electromos Club Hardware
+              </span>
+              <button class="bookmark-btn text-slate-500 hover:text-amber-400 transition-colors cursor-pointer" data-project="solar-tracker" title="Bookmark in localStorage">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-amber-300">Dual-Axis Solar Tracker</h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+              Hardware prototype developed with the Electromos electronics club at IIT Bhilai. Dynamically steers a photovoltaic panel along azimuth and elevation axes to track peak solar incidence.
+            </p>
+
+            <!-- Tech Stack Pills -->
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Arduino / C++</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">LDR Sensor Quad</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Dual Micro Servos</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Embedded Control</span>
+            </div>
+
+            <!-- Hardware Engineering Details -->
+            <div class="mt-4 p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+              <div class="font-semibold text-slate-200 flex items-center gap-1">
+                <i data-lucide="sliders" class="w-3 h-3 text-amber-400"></i> Engineering Highlights:
+              </div>
+              <ul class="list-disc list-inside space-y-0.5 text-slate-400">
+                <li>Differential analog comparison algorithm filtering sunlight noise.</li>
+                <li>30% to 40% energy harvest gain over static planar installations.</li>
+                <li>Low-idle power sleep states to prevent auxiliary battery depletion.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Links Footer -->
+          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 text-xs text-amber-400 font-medium">
+              <i data-lucide="wrench" class="w-3.5 h-3.5"></i> Prototyping @ IIT Bhilai
+            </span>
+            <span class="text-xs text-slate-500 font-mono">Electromos Lab</span>
+          </div>
+        </div>
+
+        <!-- CARD 5: DailyGoals Website -->
+        <div class="reveal-on-scroll delay-300 project-card glass-card rounded-2xl p-6 flex flex-col justify-between" data-category="web">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-950/70 border border-blue-500/40 text-blue-300 text-[11px] font-mono font-medium">
+                <i data-lucide="check-circle" class="w-3 h-3"></i> Own Convenience App
+              </span>
+              <button class="bookmark-btn text-slate-500 hover:text-amber-400 transition-colors cursor-pointer" data-project="dailygoals" title="Bookmark in localStorage">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-blue-300">DailyGoals</h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+              Distraction-free daily task and personal habit tracker built for daily convenience and academic execution momentum. Engineered with zero external bloat.
+            </p>
+
+            <!-- Tech Stack Pills -->
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Vanilla JavaScript</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">HTML5 / CSS3</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">LocalStorage Engine</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Responsive UX</span>
+            </div>
+
+            <!-- Features -->
+            <div class="mt-4 p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+              <div class="font-semibold text-slate-200 flex items-center gap-1">
+                <i data-lucide="zap" class="w-3 h-3 text-sky-400"></i> Features:
+              </div>
+              <ul class="list-disc list-inside space-y-0.5 text-slate-400">
+                <li>Instant local persistence preserving habits without server roundtrips.</li>
+                <li>Targeted daily goal streaks for engineering homework &amp; code practice.</li>
+                <li>Lightweight footprint loading in sub-100ms.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Links Footer -->
+          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+            <a href="https://hyeswin1.github.io/DailyGoals/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Website
+            </a>
+            <a href="https://github.com/hyeswin1/DailyGoals" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Repo
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. EXPERIENCE & LEADERSHIP SECTION -->
+    <!-- ========================================== -->
+    <section id="experience" class="space-y-8 scroll-mt-20">
+      
+      <div class="reveal-on-scroll border-b border-slate-800/80 pb-5">
+        <div class="text-xs font-mono uppercase tracking-widest text-sky-400 font-semibold mb-1">Campus Leadership &amp; Culture</div>
+        <h2 class="text-3xl font-extrabold text-white tracking-tight">Experience &amp; Student Involvements</h2>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          Demonstrated track record of cross-functional team collaboration, event management, and competitive hacking at IIT Bhilai.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Experience Card 1: E-Cell IIT Bhilai -->
+        <div class="reveal-on-scroll delay-100 glass-card rounded-2xl p-6 border border-slate-800 relative">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-amber-950/70 border border-amber-500/40 text-amber-300 text-[11px] font-mono">
+              Management &amp; Operations
+            </span>
+            <span class="text-xs font-mono text-slate-400">IIT Bhilai</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Entrepreneurship Cell (E-Cell)</h3>
+          <p class="text-xs font-mono text-sky-400 mt-0.5">Management Team Member &amp; Event Volunteer</p>
+          
+          <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+              <span><strong>Meraz Fest Event Management:</strong> Volunteered in managing the strategic <em>"Deal or No Deal"</em> event during Meraz Fest, coordinating budget bidding rules, multi-round team challenges, and dynamic onstage logistics.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+              <span>Supported entrepreneurship workshops, campus ideation cohorts, and startup networking sessions.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Experience Card 2: SETU Club (Mental Wellness) -->
+        <div class="reveal-on-scroll delay-150 glass-card rounded-2xl p-6 border border-slate-800 relative">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-rose-950/70 border border-rose-500/40 text-rose-300 text-[11px] font-mono">
+              Community Outreach
+            </span>
+            <span class="text-xs font-mono text-slate-400">IIT Bhilai</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">SETU Club &mdash; Mental Wellness Club</h3>
+          <p class="text-xs font-mono text-rose-400 mt-0.5">Active Member &amp; Campaign Volunteer</p>
+          
+          <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+              <span><strong>Suicide Prevention Day:</strong> Volunteered for the campus-wide Slogan Writing initiative to spread mental health awareness, empathy, and open dialogue across student hostels.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+              <span>Assisted peer support networks and wellness check-in avenues in collaboration with student mentors.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Experience Card 3: Technical Club Memberships -->
+        <div class="reveal-on-scroll delay-200 glass-card rounded-2xl p-6 border border-slate-800 relative">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-indigo-950/70 border border-indigo-500/40 text-indigo-300 text-[11px] font-mono">
+              Technical Societies
+            </span>
+            <span class="text-xs font-mono text-slate-400">Continuous Contribution</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Club Memberships</h3>
+          <p class="text-xs font-mono text-indigo-400 mt-0.5">Core Technical Ecosystem</p>
+          
+          <div class="mt-4 grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+              <div class="font-bold text-white flex items-center gap-1.5">
+                <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-400"></i> Electromos
+              </div>
+              <p class="text-slate-400 mt-1 text-[11px]">Electronics Club member working on solar harvesting arrays &amp; microcontroller firmware.</p>
+            </div>
+            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+              <div class="font-bold text-white flex items-center gap-1.5">
+                <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-400"></i> BlockchainIITBH
+              </div>
+              <p class="text-slate-400 mt-1 text-[11px]">Deep diving into EVM mechanics, smart contract audits, and zero-knowledge research.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Card 4: Competitions & Achievements (With Big-O Wallet Summary) -->
+        <div class="reveal-on-scroll delay-250 glass-card rounded-2xl p-6 border border-slate-800 relative">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 text-[11px] font-mono">
+              Competitive Milestones
+            </span>
+            <span class="text-xs font-mono text-slate-400">Hackathons &amp; Contests</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Competitions &amp; Achievements</h3>
+          <p class="text-xs font-mono text-emerald-400 mt-0.5">Validated Under Pressure</p>
+          
+          <ul class="mt-4 space-y-3 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="award" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+              <span><strong>VibeChain Hackathon:</strong> Live on-chain development competition demonstrating rapid dApp compilation and smart contract vulnerability analysis under tight clock bounds.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="award" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+              <span><strong>Meraz 7.0 Smart Contract Security:</strong> Vulnerability discovery challenge uncovering reentrancy risks, storage layout conflicts, and access control edge cases.</span>
+            </li>
+            
+            <!-- Summary of Bizzaro Competition: Big-O Anti-Impulse Wallet -->
+            <li class="p-3.5 rounded-xl bg-slate-900/90 border border-indigo-500/30 text-xs space-y-1.5">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span class="flex items-center gap-1.5 text-indigo-300 font-mono text-[11px]">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-400"></i> Bizzaro Competition Pitch: Big-O Anti-Impulse Wallet
+                </span>
+                <span class="text-[10px] text-slate-400 font-mono">Hardware Fintech</span>
+              </div>
+              <p class="text-slate-300 text-[11px] leading-relaxed">
+                Pitched an engineered solution against frictionless spending and psychological impulse buying: the <strong>Big-O Anti-Impulse Wallet</strong>. By injecting deliberate algorithmic friction, it forces the brain from emotional craving to cold logical computation.
+              </p>
+              <div class="pt-1 border-t border-slate-800 text-[11px] text-slate-400 space-y-0.5">
+                <div><strong class="text-slate-200">Hardware:</strong> Low-power Arduino Nano, micro-servo deadbolt, E-ink display, and tactile D-pad.</div>
+                <div><strong class="text-slate-200">Flow:</strong> Displays a randomized C++ snippet. User inputs the Big-O complexity (e.g. $O(1)$, $O(\log n)$, $O(n^2)$) to unlock payment cards; incorrect answers trigger an exponential $O(2^n)$ penalty timer.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. ABOUT ME & CORE COMPETENCIES -->
+    <!-- ========================================== -->
+    <section id="about" class="space-y-8 scroll-mt-20">
+      
+      <div class="reveal-on-scroll border-b border-slate-800/80 pb-5">
+        <div class="text-xs font-mono uppercase tracking-widest text-sky-400 font-semibold mb-1">Background &amp; Technical DNA</div>
+        <h2 class="text-3xl font-extrabold text-white tracking-tight">About Me</h2>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          Academic foundation, development competencies, and personal dimensions beyond the terminal.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Bio Narrative (Left Column) -->
+        <div class="reveal-on-scroll delay-100 lg:col-span-7 space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p>
+            Originally from <span class="text-white font-semibold">Bengaluru</span>&mdash;India's bustling tech capital&mdash;I cultivated an early curiosity for how software algorithms and physical hardware intersect. That trajectory propelled me to the prestigious <span class="text-white font-semibold">Indian Institute of Technology (IIT) Bhilai</span>, where I am pursuing my B.Tech in <span class="text-sky-400 font-medium">Electrical Engineering</span>.
+          </p>
+          <p>
+            My engineering philosophy centers on rigorous first-principles thinking: understanding signal levels and microcontrollers on the hardware side, while mastering algorithmic efficiency, smart contract security, and data analytics on the computational side.
+          </p>
+          <p>
+            When I am not exploring machine learning, prototyping circuits, or analyzing data, you will find me:
+          </p>
+
+          <!-- Personal Interests Cards -->
+          <div class="grid grid-cols-2 gap-3 pt-2">
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 flex items-center gap-3">
+              <div class="p-2 rounded-lg bg-sky-500/10 text-sky-400 shrink-0">
+                <i data-lucide="trophy" class="w-4 h-4"></i>
+              </div>
+              <div class="text-xs">
+                <div class="font-bold text-white">Recreational Football</div>
+                <div class="text-slate-400">Casual pitch matches &amp; team play</div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 flex items-center gap-3">
+              <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 shrink-0">
+                <i data-lucide="tv" class="w-4 h-4"></i>
+              </div>
+              <div class="text-xs">
+                <div class="font-bold text-white">Champions League</div>
+                <div class="text-slate-400">Following UEFA tactics &amp; matches</div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 flex items-center gap-3">
+              <div class="p-2 rounded-lg bg-purple-500/10 text-purple-400 shrink-0">
+                <i data-lucide="music" class="w-4 h-4"></i>
+              </div>
+              <div class="text-xs">
+                <div class="font-bold text-white">Electronic Music (EDM)</div>
+                <div class="text-slate-400">High-energy synthesizers &amp; beats</div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 flex items-center gap-3">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0">
+                <i data-lucide="film" class="w-4 h-4"></i>
+              </div>
+              <div class="text-xs">
+                <div class="font-bold text-white">Nostalgic Cinema</div>
+                <div class="text-slate-400">Feel-good timeless cinema &amp; storytelling</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Competencies & Toolchain (Right Column) -->
+        <div class="reveal-on-scroll delay-200 lg:col-span-5 space-y-4">
+          <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-5">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i data-lucide="code-2" class="w-5 h-5 text-sky-400"></i> Core Competencies
+            </h3>
+
+            <!-- Languages -->
+            <div>
+              <div class="text-xs font-mono uppercase text-slate-400 font-semibold mb-2">Programming Languages</div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-sky-300 border border-slate-700">C</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-sky-300 border border-slate-700">C++</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-sky-300 border border-slate-700">Python</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-sky-300 border border-slate-700">Java</span>
+              </div>
+            </div>
+
+            <!-- Databases & Data Analysis -->
+            <div>
+              <div class="text-xs font-mono uppercase text-slate-400 font-semibold mb-2">Data &amp; Databases</div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-200 border border-slate-700">MySQL</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-200 border border-slate-700">NumPy</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-200 border border-slate-700">Data Analytics</span>
+              </div>
+            </div>
+
+            <!-- Developer Toolchain -->
+            <div>
+              <div class="text-xs font-mono uppercase text-slate-400 font-semibold mb-2">Toolchain &amp; Environments</div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-sky-950 text-sky-300 border border-sky-800 font-bold">Google Antigravity</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-200 border border-slate-700">VS Code</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-200 border border-slate-700">Git / GitHub</span>
+              </div>
+            </div>
+
+            <!-- Campus & Origin Pill -->
+            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>📍 Origin: Bengaluru</span>
+              <span>🎓 IIT Bhilai (B.Tech EE)</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. CONTACT & INTERACTIVE TERMINAL -->
+    <!-- ========================================== -->
+    <section id="contact" class="space-y-8 scroll-mt-20">
+      
+      <div class="reveal-on-scroll border-b border-slate-800/80 pb-5">
+        <div class="text-xs font-mono uppercase tracking-widest text-sky-400 font-semibold mb-1">Get In Touch</div>
+        <h2 class="text-3xl font-extrabold text-white tracking-tight">Contact &amp; Direct Channels</h2>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          Frictionless communication for recruiters, research collaborators, and peer developers. Messages submitted below are delivered directly to my personal email.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Quick Direct Links & Contact Form -->
+        <div class="reveal-on-scroll delay-100 lg:col-span-6 space-y-6">
+          
+          <!-- Direct Email Cards with One-Click Copy -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono uppercase text-sky-400 font-bold">Personal Email</span>
+                <div class="text-xs font-semibold text-white mt-1 break-all select-all">hyeswinsingisetty2612@gmail.com</div>
+              </div>
+              <button class="copy-btn mt-3 inline-flex items-center gap-1.5 text-xs text-sky-400 hover:text-sky-300 font-mono self-start cursor-pointer" data-copy="hyeswinsingisetty2612@gmail.com">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Address
+              </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono uppercase text-indigo-400 font-bold">Institute Email (IIT Bhilai)</span>
+                <div class="text-xs font-semibold text-white mt-1 break-all select-all">b26ee029@iitbhilai.ac.in</div>
+              </div>
+              <button class="copy-btn mt-3 inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-mono self-start cursor-pointer" data-copy="b26ee029@iitbhilai.ac.in">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Address
+              </button>
+            </div>
+          </div>
+
+          <!-- Social Links Grid -->
+          <div class="flex flex-wrap gap-3">
+            <a href="https://github.com/hyeswin1" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-xs font-medium text-slate-200 transition-all flex items-center gap-2">
+              <i data-lucide="github" class="w-4 h-4 text-sky-400"></i>
+              <span>GitHub (hyeswin1)</span>
+            </a>
+            <a href="https://www.linkedin.com/in/hyeswin-singisetty-445369370/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-xs font-medium text-slate-200 transition-all flex items-center gap-2">
+              <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i>
+              <span>LinkedIn Profile</span>
+            </a>
+            <a href="https://www.instagram.com/hyeswin1/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-xs font-medium text-slate-200 transition-all flex items-center gap-2">
+              <i data-lucide="instagram" class="w-4 h-4 text-pink-400"></i>
+              <span>Instagram (@hyeswin1)</span>
+            </a>
+          </div>
+
+          <!-- Message Form (Direct Delivery to Personal Email) -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800">
+            <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+              <i data-lucide="send" class="w-4 h-4 text-sky-400"></i> Send a Message to My Personal Email
+            </h3>
+            <p class="text-xs text-slate-400 mb-4">
+              Sends directly to <span class="text-sky-300 font-mono">hyeswinsingisetty2612@gmail.com</span>.
+            </p>
+            
+            <form id="portfolio-contact-form" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" for="contact-name">Your Name</label>
+                  <input type="text" id="contact-name" required placeholder="Alex Turner" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" for="contact-email">Your Email</label>
+                  <input type="email" id="contact-email" required placeholder="alex@company.com" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1" for="contact-subject">Subject</label>
+                <input type="text" id="contact-subject" placeholder="Project Collaboration / Internship Inquiry" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-500">
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1" for="contact-message">Message</label>
+                <textarea id="contact-message" rows="4" required placeholder="Hey Hyeswin, I came across your portfolio and wanted to reach out regarding..." class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-500"></textarea>
+              </div>
+
+              <div class="flex items-center justify-between pt-1">
+                <span class="text-[11px] text-slate-500 font-mono">✉️ Direct delivery to personal mail</span>
+                <button type="submit" class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs shadow-md transition-all cursor-pointer flex items-center gap-1.5">
+                  <span>Send to Personal Mail</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+
+        <!-- Right: Interactive Faux-Terminal CLI -->
+        <div class="reveal-on-scroll delay-200 lg:col-span-6 w-full">
+          <div class="terminal-window p-4 flex flex-col h-[520px]">
+            
+            <!-- Terminal Titlebar -->
+            <div class="terminal-header -mx-4 -mt-4 px-4 py-2.5 rounded-t-xl flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                <span class="text-xs font-mono text-slate-400 ml-2">hyeswin@iitbhilai-terminal:~ (zsh)</span>
+              </div>
+              <span class="text-[10px] font-mono text-slate-500">Interactive CLI</span>
+            </div>
+
+            <!-- Terminal Output Scroll Area -->
+            <div id="terminal-cli-output" class="flex-1 overflow-y-auto py-3 space-y-2 font-mono text-xs text-slate-300">
+              <div class="text-slate-400">
+                Welcome to Hyeswin's Interactive Engineering Console [Version 1.0.4]<br>
+                Type <span class="text-amber-300 font-bold cursor-pointer underline" onclick="runCliCmd('help')">help</span> to view available commands or click shortcuts:
+              </div>
+              
+              <!-- Quick Terminal Command Pills -->
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <button onclick="runCliCmd('whoami')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] cursor-pointer">whoami</button>
+                <button onclick="runCliCmd('projects')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] cursor-pointer">projects</button>
+                <button onclick="runCliCmd('skills')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] cursor-pointer">skills</button>
+                <button onclick="runCliCmd('clubs')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] cursor-pointer">clubs</button>
+                <button onclick="runCliCmd('bizzaro')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] cursor-pointer">bizzaro</button>
+                <button onclick="runCliCmd('contact')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] cursor-pointer">contact</button>
+                <button onclick="runCliCmd('clear')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 text-[11px] cursor-pointer">clear</button>
+              </div>
+            </div>
+
+            <!-- Terminal Input Prompt -->
+            <div class="mt-2 pt-2 border-t border-slate-800 flex items-center gap-2 font-mono text-xs">
+              <span class="text-emerald-400 font-bold shrink-0">guest@hyeswin</span>
+              <span class="text-slate-400">:</span>
+              <span class="text-sky-400">~</span>
+              <span class="text-slate-400">$</span>
+              <input type="text" id="terminal-cli-input" placeholder="Type command (e.g. whoami, help, contact)..." class="flex-1 bg-transparent text-white focus:outline-none font-mono text-xs placeholder-slate-600">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Floating Back to Top Button -->
+  <button id="scroll-to-top-btn" class="fixed bottom-6 right-6 z-40 p-3 rounded-full glass-panel border border-slate-700/80 text-slate-400 hover:text-sky-300 hover:border-sky-500/50 shadow-xl opacity-0 translate-y-6 pointer-events-none transition-all duration-300 cursor-pointer group" title="Back to top" aria-label="Scroll to top">
+    <i data-lucide="arrow-up" class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"></i>
+  </button>
+
+  <!-- ========================================== -->
+  <!-- FOOTER -->
+  <!-- ========================================== -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 py-10 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-white">Hyeswin Singisetty</span>
+        <span>&bull;</span>
+        <span>B.Tech Electrical Engineering @ IIT Bhilai</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span>Session visits: <strong id="visitor-count-badge" class="text-sky-400">1</strong></span>
+        <span>&bull;</span>
+        <a href="#hero" class="hover:text-white transition-colors">Back to Top &uarr;</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Engine Script -->
+  <script src="script.js"></script>
+</body>
+</html>
